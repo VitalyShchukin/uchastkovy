@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0"
+       object-id="calls">
+    <list>
+        <rest>/api</rest>
+    </list>
+
+    <fields>
+        <field id="id" domain="long" mapping="['id']"/>
+        <field id="fio" domain="string" mapping="['fio']"/>
+        <field id="date" domain="date" mapping="['date']"/>
+        <field id="disp" domain="boolean" mapping="['disp']"/>
+    </fields>
+</query>

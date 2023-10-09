@@ -1,8 +1,10 @@
 package ru.mis.uchastkovy.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mis.uchastkovy.model.Uch;
+import ru.mis.uchastkovy.repository.Rep;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -13,11 +15,16 @@ import java.util.ResourceBundle;
 @RestController
 public class ApiController {
 
+    @Autowired
+    private Rep repo;
+
     @GetMapping("/api")
     public List<Uch> get() {
 //        String a = "{\"content\": [{\"id\":1,\"fio\":\"Иванов А.Ф\",\"date\":\"2023-05-01\",\"disp\":true}, \n" +
 //                " {\"id\":2,\"fio\":\"Петров П.П.\",\"date\":\"2024-10-01\",\"disp\":false}]}";
 //
+
+        repo.findNsiDepartKind(1,"",true);
 
         List<Uch> list = Arrays.asList(
                 new Uch(1L, "Иванов А.Ф", new Date(), true),
@@ -27,6 +34,9 @@ public class ApiController {
                 new Uch(4L, "Петров П.Ф.", new Date(), true),
                 new Uch(5L, "Иванов А.А", new Date(), true)
         );
+
+
+
 
         return list;
     }

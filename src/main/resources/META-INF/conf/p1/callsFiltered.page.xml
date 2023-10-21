@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
+      name="Отфильтрованный список">
+    <datasources>
+
+        <datasource id="ds" query-id="calls" route="/list">
+            <filters>
+                <like field-id="distr_id" param="distr"/>
+            </filters>
+        </datasource>
+    </datasources>
+    <regions>
+
+        <table id="table" datasource="ds">
+            <pagination
+                    show-last="true"
+                    show-count="always"/>
+            <columns>
+                <column text-field-id="fio" label="Фамилия И.О."/>
+                <column text-field-id="distr" label="Участок"/>
+                <column text-field-id="mo" label="Мед организация"/>
+            </columns>
+            <toolbar place="topRight">
+                <group generate="tableSettings"/>
+            </toolbar>
+        </table>
+
+    </regions>
+</page>

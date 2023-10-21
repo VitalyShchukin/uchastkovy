@@ -1,14 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <query xmlns="http://n2oapp.net/framework/config/schema/query-5.0"
        object-id="calls">
-    <list>
-        <rest>/api</rest>
+
+    <list result-mapping="['_embedded.patients']" count-mapping="['page.totalElements']">
+        <rest>/data-api/patients/search/findAllPatientsFromDistr?distr={districtId}&amp;page={page}&amp;size={limit}</rest>
     </list>
 
     <fields>
         <field id="id" domain="long" mapping="['id']"/>
         <field id="fio" domain="string" mapping="['fio']"/>
-        <field id="date" domain="date" mapping="['date']"/>
-        <field id="disp" domain="boolean" mapping="['disp']"/>
+        <field id="distr" domain="string" mapping="['distr']"/>
+        <field id="distr_id" domain="string" mapping="['distr_id']"/>
+        <field id="mo" domain="string" mapping="['mo']"/>
     </fields>
+    <filters>
+        <like field-id="distr_id"
+              filter-id="districtId"
+              />
+    </filters>
 </query>
+
+<!--        default-value="136"-->

@@ -18,7 +18,6 @@
             </bars>
         </chart>
 
-
         <chart width="730" height="250">
             <datasource query-id="attachment-dynamic"/>
             <pie center-x="150" center-y="120" inner-radius="50" outer-radius="80"

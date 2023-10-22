@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0">
+    <list result-mapping="['_embedded.patients']" count-mapping="['page.totalElements']">
+        <!--        <rest>/data-api/patients/search/findAllPatientsFromDistr?distr={districtId}&amp;page={page}&amp;size={limit}</rest>-->
+    </list>
+
+    <fields>
+        <field id="id" domain="long" mapping="['id']"/>
+        <field id="countAll" domain="integer" mapping="['countAll']"/>
+        <field id="countChild" domain="integer" mapping="['countChild']"/>
+        <field id="countMan" domain="integer" mapping="['distr_id']"/>
+        <field id="countWoman" domain="integer" mapping="['countWoman']"/>
+    </fields>
+    <filters>
+        <like field-id="distr_id"
+              filter-id="districtId"
+        />
+    </filters>
+</query>

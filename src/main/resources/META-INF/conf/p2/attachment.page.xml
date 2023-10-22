@@ -24,5 +24,7 @@
                  name-field-id="name" value-field-id="income" color="#82ca9d" has-label="true"/>
         </chart>
 
+        <widget name="gr1" width="730" height="250"/>
+
     </regions>
 </page>

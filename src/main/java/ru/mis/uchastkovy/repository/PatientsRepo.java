@@ -7,10 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
-import ru.mis.uchastkovy.model.sqlModel.PatientDto;
+import ru.mis.uchastkovy.model.PatientDto;
 
 @RepositoryRestResource(collectionResourceRel = "patients", path = "patients")
-public interface PatRepo extends CrudRepository<PatientDto, Long> {
+public interface PatientsRepo extends CrudRepository<PatientDto, Long> {
 
     @Query(value = "select " +
             " pi2.id as id " +

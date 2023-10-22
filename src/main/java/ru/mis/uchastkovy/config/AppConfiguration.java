@@ -24,16 +24,16 @@ public class AppConfiguration {
 //    }
 
 
-    @Bean
-    @Primary
-    public ObjectMapper serializeObjectMapper() {
-//        JavaTimeModule module = new JavaTimeModule();
-//        module.addSerializer(LOCAL_DATETIME_SERIALIZER);
-        return new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-//                .registerModule(module);
-    }
+//    @Bean
+//    @Primary
+//    public ObjectMapper serializeObjectMapper() {
+////        JavaTimeModule module = new JavaTimeModule();
+////        module.addSerializer(LOCAL_DATETIME_SERIALIZER);
+//        return new ObjectMapper()
+//                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+////                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+////                .registerModule(module);
+//    }
 
 
 

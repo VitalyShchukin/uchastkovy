@@ -1,4 +1,4 @@
-package ru.mis.uchastkovy.model.sqlModel;
+package ru.mis.uchastkovy.model;
 
 import lombok.*;
 
@@ -11,12 +11,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class DistrictDto {
+public class PatientDto {
 
     @Id
     private Long id;
 
+    private String fio;
     private String distr;
-    private String separation;
-    private String distr_type;
+    private Integer distrId;
+    private String mo;
 }

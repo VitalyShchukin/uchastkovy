@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
-import ru.mis.uchastkovy.model.sqlModel.DistrictDto;
-
-import java.util.List;
+import ru.mis.uchastkovy.model.DistrictDto;
 
 @RepositoryRestResource(collectionResourceRel = "districts", path = "districts")
 public interface DistrictRepo extends CrudRepository<DistrictDto, Long> {

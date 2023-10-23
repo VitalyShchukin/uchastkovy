@@ -16,8 +16,6 @@ public class GenderAndChildDto {
     @Id
     private Long id;
 
-    private Integer countAll;
-    private Integer countChild;
-    private Integer countMan;
-    private Integer countWoman;
+    private String gender;
+    private Integer patCount;
 }

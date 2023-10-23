@@ -23,7 +23,7 @@
                         <column text-field-id="mo" label="Мед организация"/>
                     </columns>
                     <toolbar place="topRight">
-                        <group generate="tableSettings"/>
+                        <group generate="columns,resize"/>
                     </toolbar>
                 </table>
             </tab>

@@ -1,3 +1,6 @@
-<html>
+<?xml version='1.0' encoding='UTF-8'?>
+<html xmlns="http://n2oapp.net/framework/config/schema/widget-5.0">
+
     <content url="test.html"/>
+
 </html>

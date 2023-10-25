@@ -3,57 +3,54 @@
                      name="Диаграмма-область">
 
     <top>
-        <chart width="1230" height="250">
-            <datasource query-id="attachment"/>
-            <areas x-field-id="name" grid-stroke-dasharray="3 3">
-                <area field-id="expenses" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>
-                <area field-id="income" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>
-            </areas>
-        </chart>
+        <widget ref-id="testChart"></widget>
+        <!--        <chart width="1230" height="250">-->
+        <!--            <datasource query-id="attachment"/>-->
+        <!--            <areas x-field-id="name" grid-stroke-dasharray="3 3">-->
+        <!--                <area field-id="expenses" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
+        <!--                <area field-id="income" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
+        <!--            </areas>-->
+        <!--        </chart>-->
+
     </top>
 
-    <left>
-        <form>
-            <fields>
-                <line label="Статистика по населению" collapsible="false">
-                    <text id="d2">
-                        По состоянию на ${today()} год:
-                    </text>
-                </line>
-            </fields>
-        </form>
-        <chart width="550" height="250" title="jkbkbk">
-            <datasource query-id="genderAndChild"/>
-            <bars x-field-id="gender" grid-stroke-dasharray="3 3">
-                <bar field-id="patCount" color="#8884d8"/>
-                <!--                <bar field-id="income" color="#82ca9d"/>-->
-            </bars>
-        </chart>
-    </left>
+<!--    <left>-->
+<!--        <form>-->
+<!--            <fields>-->
+<!--                <line label="Статистика по населению" collapsible="false">-->
+<!--                    <text id="d2">-->
+<!--                        По состоянию на ${today()} год:-->
+<!--                    </text>-->
+<!--                </line>-->
+<!--            </fields>-->
+<!--        </form>-->
+<!--        <chart width="550" height="250" title="jkbkbk">-->
+<!--            <datasource query-id="genderAndChild"/>-->
+<!--            <bars x-field-id="gender" grid-stroke-dasharray="3 3">-->
+<!--                <bar field-id="patCount" color="#8884d8"/>-->
+<!--                &lt;!&ndash;                <bar field-id="income" color="#82ca9d"/>&ndash;&gt;-->
+<!--            </bars>-->
+<!--        </chart>-->
+<!--    </left>-->
 
-    <right>
-        <line label="График диспансерного наблюдения прикрепленного населения" collapsible="false">
-            <form>
-                <fields>
-                    <text id="field1">
-                        Пациентов по профилям:
-                    </text>
-                </fields>
-            </form>
-        </line>
-
-
-        <chart width="730" height="250">
-            <datasource query-id="dispUch"/>
-            <pie center-x="150" center-y="120" inner-radius="50" outer-radius="100"
-                 name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>
-        </chart>
-    </right>
+<!--    <right>-->
+<!--        <line label="График диспансерного наблюдения прикрепленного населения" collapsible="false">-->
+<!--            <form>-->
+<!--                <fields>-->
+<!--                    <text id="field1">-->
+<!--                        Пациентов по профилям:-->
+<!--                    </text>-->
+<!--                </fields>-->
+<!--            </form>-->
+<!--        </line>-->
 
 
-    <!--        <html>-->
-    <!--            <content url="/home/vitaly/NetBeansProjects/uchastkovy/src/main/resources/static/templates/testo.html"/>-->
-    <!--        </html>-->
+<!--        <chart width="730" height="250">-->
+<!--            <datasource query-id="dispUch"/>-->
+<!--            <pie center-x="150" center-y="120" inner-radius="50" outer-radius="100"-->
+<!--                 name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>-->
+<!--        </chart>-->
+<!--    </right>-->
 
-    <!--    </regions>-->
+
 </top-left-right-page>

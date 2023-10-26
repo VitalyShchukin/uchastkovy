@@ -14,41 +14,47 @@ import ru.mis.uchastkovy.model.TreeOrgDistrict;
 public interface TreeOrgDistrictRepo extends CrudRepository<TreeOrgDistrict, Long> {
 
 
-    @Query(value = " select row_number() over() as id, * from (\n" +
-            "  select \n" +
-            "    po.id as element_id\n" +
-            "  , po.short_name as name\n" +
-            "  , cast(null as int4) as parent_id\n" +
-            "  , cast(null as int4) as distr_id \n" +
-            " from public.pim_organization po\n" +
-            " where po.id in (SELECT distinct(mcs.clinic_id) FROM public.md_clinic_separation mcs)\n" +
-            " union all\n" +
-            " select \n" +
-            "\t(row_number () over ())+(SELECT max(mcs.clinic_id) FROM public.md_clinic_separation mcs) as id\n" +
-            "   ,mcd.name as name\n" +
-            "  , mcs.clinic_id parent_id\n" +
-            "  , mcd.id as distr_id\n" +
-            " from public.pim_organization po\n" +
-            " join public.md_clinic_separation mcs on mcs.clinic_id = po.id\n" +
-            " join public.md_clinic_district mcd on mcd.separation_id = mcs.id\n" +
+    @Query(value = " select row_number() over() as id, * from ( " +
+            "  select " +
+            "    po.id as element_id " +
+            "  , po.short_name as name " +
+            "  , cast(null as int4) as parent_id " +
+            "  , -1 as distr_id " +
+            " from public.pim_organization po " +
+            " where po.id in (SELECT distinct(mcs.clinic_id) FROM public.md_clinic_separation mcs) " +
+            " union all " +
+            " select " +
+            " (row_number () over ())+(SELECT max(mcs.clinic_id) FROM public.md_clinic_separation mcs) as id " +
+            " , case " +
+            " when not exists (select * from public.pci_patient_reg where district_id = mcd.id) then concat(mcd.name, '(пустой)') " +
+            " else mcd.name " +
+            " end as name " +
+            "  , mcs.clinic_id parent_id " +
+            "  , mcd.id as distr_id " +
+            " from public.pim_organization po " +
+            " join public.md_clinic_separation mcs on mcs.clinic_id = po.id " +
+            " join public.md_clinic_district mcd on mcd.separation_id = mcs.id " +
             ") as main",
-            countQuery = " select count(*) from (\n" +
-                    "  select \n" +
-                    "    po.id as element_id\n" +
-                    "  , po.short_name as name\n" +
-                    "  , cast(null as int4) as parent_id\n" +
-                    "  , cast(null as int4) as distr_id \n" +
-                    " from public.pim_organization po\n" +
-                    " where po.id in (SELECT distinct(mcs.clinic_id) FROM public.md_clinic_separation mcs)\n" +
-                    " union all\n" +
-                    " select \n" +
-                    "\t(row_number () over ())+(SELECT max(mcs.clinic_id) FROM public.md_clinic_separation mcs) as id\n" +
-                    "   ,mcd.name as name\n" +
-                    "  , mcs.clinic_id parent_id\n" +
-                    "  , mcd.id as distr_id\n" +
-                    " from public.pim_organization po\n" +
-                    " join public.md_clinic_separation mcs on mcs.clinic_id = po.id\n" +
-                    " join public.md_clinic_district mcd on mcd.separation_id = mcs.id\n" +
+            countQuery = " select count(*) from ( " +
+                    "  select " +
+                    "    po.id as element_id " +
+                    "  , po.short_name as name " +
+                    "  , cast(null as int4) as parent_id " +
+                    "  , -1 as distr_id " +
+                    " from public.pim_organization po " +
+                    " where po.id in (SELECT distinct(mcs.clinic_id) FROM public.md_clinic_separation mcs) " +
+                    " union all " +
+                    " select " +
+                    " (row_number () over ())+(SELECT max(mcs.clinic_id) FROM public.md_clinic_separation mcs) as id " +
+                    " , case " +
+                    " when not exists (select * from public.pci_patient_reg where district_id = mcd.id) then concat(mcd.name, '(пустой)') " +
+                    " else mcd.name " +
+                    " end as name " +
+                    "  , mcs.clinic_id parent_id " +
+                    "  , mcd.id as distr_id " +
+                    " from public.pim_organization po " +
+                    " join public.md_clinic_separation mcs on mcs.clinic_id = po.id " +
+                    " join public.md_clinic_district mcd on mcd.separation_id = mcs.id " +
                     ") as main",
             nativeQuery = true)
     @RestResource

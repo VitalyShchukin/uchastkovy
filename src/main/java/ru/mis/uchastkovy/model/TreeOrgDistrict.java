@@ -19,4 +19,5 @@ public class TreeOrgDistrict {
     private Integer elementId;
     private String name;
     private Integer parentId;
+    private Integer distrId;
 }

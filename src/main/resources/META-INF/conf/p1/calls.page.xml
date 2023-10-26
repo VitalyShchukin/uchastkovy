@@ -9,7 +9,7 @@
                 <button label="Фильтровать по distr">
                     <open-page page-id="callsFiltered" route="/filteredByDistr">
                         <params>
-                            <query-param name="distr" value="{elementId}" model="resolve"/>
+                            <query-param name="distr" value="{distrId}" model="resolve"/>
                         </params>
                     </open-page>
                 </button>

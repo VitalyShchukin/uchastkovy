@@ -24,5 +24,11 @@
                 <eq/>
             </filters>
         </field>
+        <field id="distrId">
+            <select/>
+            <filters>
+                <eq/>
+            </filters>
+        </field>
     </fields>
 </query>

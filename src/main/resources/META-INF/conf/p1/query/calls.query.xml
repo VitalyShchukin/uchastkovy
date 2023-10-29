@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0"
-       object-id="calls">
+<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0">
 
     <list result-mapping="['_embedded.patients']" count-mapping="['page.totalElements']">
         <rest>/data-api/patients/search/findAllPatientsFromDistr?distr={districtId}&amp;page={page}&amp;size={limit}</rest>

@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <top-left-right-page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
-                     name="Диаграмма-область">
+                     name="Диаграмма-область"
+                     page-id="attachment"
+                     route="/:district_id/attachment">
+
+
 
     <top>
         <line label="Заболевшие ОРВИ по месяцам" collapsible="false">
@@ -51,7 +55,11 @@
             </bars>
         </chart>
         <table selection="none">
-            <datasource query-id="dispUch" size="2"/>
+            <datasource query-id="dispUch">
+                <filters>
+                    <like field-id="distr_id" param="distr"/>
+                </filters>
+            </datasource>
             <columns>
                 <column text-field-id="id" label="№"/>
                 <column text-field-id="name" label="Наименование"/>
@@ -76,7 +84,11 @@
                  name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>
         </chart>
         <table selection="none">
-            <datasource query-id="dispUch" size="3"/>
+            <datasource query-id="dispUch">
+                <filters>
+                    <like field-id="distr_id" param="distr"/>
+                </filters>
+            </datasource>
             <columns>
                 <column text-field-id="id" label="№"/>
                 <column text-field-id="name" label="Убыль населения"/>
@@ -84,13 +96,7 @@
             </columns>
         </table>
 
-
-
-
-
 <!--        <widget ref-id="testChart"/>-->
 
     </right>
-
-
 </top-left-right-page>

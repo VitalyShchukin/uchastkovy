@@ -1,5 +1,46 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
-             name="Меню навигации в приложении">
-    <form/>
-</simple-page>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
+      name="Выберите участок"
+      html-title="Паспорт участка">
+
+
+
+    <regions>
+        <form id="indexForm">
+            <fields>
+                <text>
+                    Приложение предназначено для оптимизации работы участковых врачей. Функционалом
+                    предусмотрен просмотр списков пациентов по разным критериям, а также графическое отображение
+                    критически важных показателей участка
+                </text>
+                <input-select-tree
+                        id="inpSelectTree"
+                        value-field-id="elementId"
+                        query-id="treeOrgDistr"
+                        no-label="true"
+                        parent-field-id="parentId"
+                        placeholder="Выберите участок"
+                        badge-field-id="badge"
+                        badge-color-field-id="status"
+                        required="true"/>
+            </fields>
+
+            <toolbar place="bottomCenter">
+                <button label="Подтвердить и найти"
+                        confirm="true"
+                        confirm-text="Вы уверены?"
+                        confirm-title="Подтверждение"
+                        confirm-ok-label="Да"
+                        confirm-cancel-label="Нет"
+                        color="success"
+                        icon="fa fa-search">
+                    <open-page page-id="callsFiltered" route="/callsFilteredByDistr">
+                        <params>
+                            <query-param name="distr" value="{inpSelectTree.distrId}" model="resolve" datasource="indexForm"/>
+                        </params>
+                    </open-page>
+                </button>
+            </toolbar>
+        </form>
+    </regions>
+</page>

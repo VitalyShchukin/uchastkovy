@@ -25,8 +25,8 @@ public interface GenderAndChildRepo extends PagingAndSortingRepository<GenderAnd
             "  select " +
             "   case " +
             "   when main.gender = 1 and years_old >= 18 then 'муж' \n" +
-            "   when main.gender = 2 and years_old >= 18 then 'жен'\n" +
-            "   when years_old < 18 then 'дети'\n" +
+            "   when main.gender = 2 and years_old >= 18 then 'жен' \n" +
+            "   when years_old < 18 then 'дети' \n" +
             "  end as gender " +
             "  , count(*) pat_count\n" +
             "  from main \n" +
@@ -55,8 +55,8 @@ public interface GenderAndChildRepo extends PagingAndSortingRepository<GenderAnd
                     "  select \t \n" +
                     "  \tcase \n" +
                     "\t\twhen main.gender = 1 and years_old >= 18 then 'муж' \n" +
-                    "\t\twhen main.gender = 2 and years_old >= 18 then 'жен'\n" +
-                    "\t\twhen years_old < 18 then 'дети'\n" +
+                    "\t\twhen main.gender = 2 and years_old >= 18 then 'жен' \n" +
+                    "\t\twhen years_old < 18 then 'дети' \n" +
                     "\tend as gender\n" +
                     "  , count(*) pat_count\n" +
                     "  from main \n" +

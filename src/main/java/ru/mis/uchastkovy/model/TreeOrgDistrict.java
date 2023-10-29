@@ -20,4 +20,6 @@ public class TreeOrgDistrict {
     private String name;
     private Integer parentId;
     private Integer distrId;
+    private String badge;
+    private String status;
 }

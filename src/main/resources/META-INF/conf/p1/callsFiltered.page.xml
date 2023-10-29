@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
-      name="Отфильтрованный список">
+      name="{distrName}">
     <datasources>
-        <datasource id="ds" query-id="calls" route="/list">
+        <datasource id="ds" query-id="calls">
             <filters>
                 <like field-id="distr_id" param="distr"/>
             </filters>
@@ -10,9 +10,23 @@
     </datasources>
     <regions>
 
-        <tabs lazy="false">
-            <tab name="Графика">
+        <form>
+    <toolbar>
+            <button label="Просмотр интерактивной информации по участку"
+                    color="info">
+                <open-page page-id="attachment" route="/attachedPeople" default-value="#{distr}">
+                    <params>
+                        <query-param name="distr" value="distr"/>
+                    </params>
+                </open-page>
+            </button>
+    </toolbar>
+</form>
 
+
+        <tabs lazy="false">
+
+            <tab name="Графика">
                 <table id="table1" datasource="ds">
                     <pagination
                             show-last="true"
@@ -27,8 +41,8 @@
                     </toolbar>
                 </table>
             </tab>
-            <tab name="Прикрепленное население">
 
+            <tab name="Прикрепленное население">
                 <table id="table2" datasource="ds">
                     <pagination
                             show-last="true"
@@ -39,12 +53,12 @@
                         <column text-field-id="mo" label="Мед организация"/>
                     </columns>
                     <toolbar place="topRight">
-                        <group generate="tableSettings"/>
+                        <group generate="columns,resize"/>
                     </toolbar>
                 </table>
             </tab>
-            <tab name="Вакцинация">
 
+            <tab name="Вакцинация">
                 <table id="table3" datasource="ds">
                     <pagination
                             show-last="true"
@@ -55,12 +69,12 @@
                         <column text-field-id="mo" label="Мед организация"/>
                     </columns>
                     <toolbar place="topRight">
-                        <group generate="tableSettings"/>
+                        <group generate="columns,resize"/>
                     </toolbar>
                 </table>
             </tab>
-            <tab name="Д-учет">
 
+            <tab name="Д-учет">
                 <table id="table4" datasource="ds">
                     <pagination
                             show-last="true"
@@ -71,12 +85,10 @@
                         <column text-field-id="mo" label="Мед организация"/>
                     </columns>
                     <toolbar place="topRight">
-                        <group generate="tableSettings"/>
+                        <group generate="columns,resize"/>
                     </toolbar>
                 </table>
             </tab>
         </tabs>
-
-
     </regions>
 </page>

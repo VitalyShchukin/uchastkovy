@@ -40,7 +40,7 @@
 <!--                        </params>-->
 <!--                    </open-page>-->
 
-                    <open-page page-id="attachment" route="/attachedByDistr">
+                    <open-page page-id="attachment" route="/attachedFilteredByDistr">
                         <params>
                             <query-param name="distr" value="{inpSelectTree.distrId}" model="resolve" datasource="indexForm"/>
                         </params>

@@ -14,5 +14,6 @@
         <field id="income">
             <select/>
         </field>
+        <field id="distr_id" domain="string"/>
     </fields>
 </query>

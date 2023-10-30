@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
-      name="{distrName}">
+      name="{ds.name}" id="callsPath">
     <datasources>
         <datasource id="ds" query-id="calls">
             <filters>
@@ -9,20 +9,6 @@
         </datasource>
     </datasources>
     <regions>
-
-        <form>
-    <toolbar>
-            <button label="Просмотр интерактивной информации по участку"
-                    color="info">
-                <open-page page-id="attachment" route="/attachedPeople" default-value="#{distr}">
-                    <params>
-                        <query-param name="distr" value="distr"/>
-                    </params>
-                </open-page>
-            </button>
-    </toolbar>
-</form>
-
 
         <tabs lazy="false">
 
@@ -89,6 +75,7 @@
                     </toolbar>
                 </table>
             </tab>
+
         </tabs>
     </regions>
 </page>

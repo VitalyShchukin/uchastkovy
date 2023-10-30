@@ -12,7 +12,7 @@
 
     </header>
     <sidebars>
-        <sidebar title="Тамбовская область" >
+        <sidebar title="Тамбовская область">
 
             <extra-menu>
                 <menu-item name="Перецти в РМИС">
@@ -22,4 +22,7 @@
         </sidebar>
     </sidebars>
     <footer left-text="Prod. by svvgan"/>
+<!--    <datasources>-->
+<!--        <datasource id="appDs" query-id="treeOrgDistr"/>-->
+<!--    </datasources>-->
 </application>

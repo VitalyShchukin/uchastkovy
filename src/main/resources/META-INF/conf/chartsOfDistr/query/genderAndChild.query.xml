@@ -9,6 +9,7 @@
 <!--        <field id="id" domain="long" mapping="['id']"/>-->
         <field id="gender" domain="integer" mapping="['gender']"/>
         <field id="patCount" domain="integer" mapping="['patCount']"/>
+        <field id="distr_id" domain="string" mapping="['distr_id']"/>
     </fields>
     <filters>
         <like field-id="distr_id"

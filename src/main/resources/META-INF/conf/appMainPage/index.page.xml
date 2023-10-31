@@ -41,6 +41,12 @@
                         </params>
                     </open-page>
 
+                    <validations>
+                        <condition id="checkOrgNotDistr"
+                                   message="Выберите конкретный участок, а не организацию"
+                                   field-id="distrId">distr != -1</condition>
+                    </validations>
+
                 </button>
             </toolbar>
         </form>

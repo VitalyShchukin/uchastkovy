@@ -9,9 +9,9 @@
         <form id="indexForm">
             <fields>
                 <text>
-                    Приложение предназначено для оптимизации работы участковых врачей. Функционалом
-                    предусмотрен просмотр списков пациентов по разным критериям, а также графическое отображение
-                    критически важных показателей участка
+Приложение предназначено для оптимизации работы участковых врачей. Функционалом
+предусмотрен просмотр списков пациентов по разным критериям, а также графическое отображение
+критически важных показателей участка
                 </text>
                 <input-select-tree
                         id="inpSelectTree"
@@ -22,10 +22,21 @@
                         placeholder="Выберите участок"
                         badge-field-id="badge"
                         badge-color-field-id="status"
-                        required="true"/>
+                        required="true">
+
+                        <validations>
+                            <condition id="checkOrgNotDistr"
+                                       message="Выберите конкретный участок, а не организацию"
+                                       field-id="inpSelectTree">${inpSelectTree.distrId} != -1</condition>
+                        </validations>
+<!--                    message="Выберите конкретный участок, а не организацию {inpSelectTree.distrId}"-->
+
+                </input-select-tree>
             </fields>
 
             <toolbar place="bottomCenter">
+
+
                 <button label="Подтвердить и найти"
                         confirm="true"
                         confirm-text="Вы уверены?"
@@ -41,14 +52,12 @@
                         </params>
                     </open-page>
 
-                    <validations>
-                        <condition id="checkOrgNotDistr"
-                                   message="Выберите конкретный участок, а не организацию"
-                                   field-id="distrId">distr != -1</condition>
-                    </validations>
 
                 </button>
+
             </toolbar>
+
         </form>
+
     </regions>
 </page>

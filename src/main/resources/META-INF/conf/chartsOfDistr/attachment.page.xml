@@ -1,172 +1,118 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <top-left-right-page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
-                     name="Диаграмма-область" >
-
-<!--    <datasources>-->
-<!--&lt;!&ndash;        <datasource id="ds" query-id="calls">&ndash;&gt;-->
-<!--&lt;!&ndash;            <filters>&ndash;&gt;-->
-<!--&lt;!&ndash;                <like field-id="distr_id" param="distr"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </filters>&ndash;&gt;-->
-<!--&lt;!&ndash;        </datasource>&ndash;&gt;-->
-<!--&lt;!&ndash;        <parent-datasource id="docs" source-datasource="attachment">&ndash;&gt;-->
-<!--&lt;!&ndash;        </parent-datasource>&ndash;&gt;-->
-<!--        <datasource id="distr"/>-->
-<!--    </datasources>-->
-
-
-<!--    <datasources>-->
-<!--        <parent-datasource id="indexForm"/> &lt;!&ndash; Ссылка на источник данных родительской страницы &ndash;&gt;-->
-<!--    </datasources>-->
-
-<!--    <datasources>-->
-<!--        <datasource>-->
-<!--            <hidden id="dss" param="distr" default-value="{distrId}"/>-->
-<!--        </datasource>-->
-<!--    </datasources>-->
-
-<!--    <input-text id="d" param="distr" default-value="{distrId}"/>-->
-    <datasources>
-        <datasource id="main" default-values-mode="defaults">
-    </datasource>
-<!--        <inherited-datasource id="a" source-datasource="indexForm" source-field-id="distr"/>-->
-    </datasources>
-
+                     name="Диаграмма-область">
 
     <toolbar place="topLeft">
 
-        <button label="Просмотр прикрепленных пациентов"
+        <button id="b" label="Просмотр прикрепленных пациентов"
                 color="info"
                 icon="fa fa-search">
 
-            <open-drawer page-id="callsFiltered" route="/callsFilteredByDistr" width="75%" >
-
-
-                <params>
-
-<!--                    <query-param name="distr" value="{callsPath.distr}" model="resolve"/>-->
-                    <query-param name="distr" value="{distr}" model="resolve" datasource="main"/>
-
-                </params>
-            </open-drawer>
+            <open-page page-id="callsFiltered" route="/callsFilteredByDistr" width="75%">
+                <datasources>
+                    <datasource id="page" route="/attachedFilteredByDistr" default-values-mode="defaults" query-id="calls">
+                        <filters>
+                            <like field-id="distr_id"
+                                  param="distr"/>
+                        </filters>
+                    </datasource>
+                </datasources>
+            </open-page>
         </button>
     </toolbar>
 
-    <top>
+        <top>
 
-        <toolbar place="topLeft">
+            <line label="Заболевшие ОРВИ по месяцам" collapsible="false">
+                <form>
+                    <fields>
+                        <text id="field2">
+                            Статистика за ${today()} год
+                        </text>
+                    </fields>
+                </form>
+            </line>
+<!--            <chart width="1230" height="200">-->
+<!--                <datasource query-id="attachment-dynamic">-->
+<!--                    <filters>-->
+<!--                        <like field-id="distr_id" param="distr"/>-->
+<!--                    </filters>-->
+<!--                </datasource>-->
+<!--                <areas x-field-id="name" grid-stroke-dasharray="3 3">-->
+<!--                    <area field-id="expenses" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
+<!--                    <area field-id="income" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
+<!--                </areas>-->
+<!--            </chart>-->
+        </top>
 
-            <button label="Просмотр прикрепленных пациентов"
-                    color="info"
-                    icon="fa fa-search">
+        <left width="50%">
 
-                <open-drawer page-id="callsFiltered" route="/callsFilteredByDistr" width="75%" >
+            <line label="Статистика по населению" collapsible="false">
+                <form>
+                    <fields>
+                        <input-text id="d" param="distr" default-value="{distrId}"/>
+                        <text id="field2">
+                            По состоянию на ${today()} год:
+                        </text>
+                    </fields>
+                </form>
+            </line>
+            <chart width="550" height="200" title="jkbkbk">
+                <datasource query-id="genderAndChild">
+                    <filters>
+                        <like field-id="distr_id" param="distr"/>
+                    </filters>
+                </datasource>
+                <bars x-field-id="gender" grid-stroke-dasharray="3 3">
+                    <bar field-id="patCount" color="#8884d8"/>
+                    <!--                <bar field-id="income" color="#82ca9d"/>-->
+                </bars>
+            </chart>
+            <table selection="none">
+                <datasource query-id="dispUch">
+                    <filters>
+                        <like field-id="distr_id" param="distr"/>
+                    </filters>
+                </datasource>
+                <columns>
+                    <column text-field-id="id" label="№"/>
+                    <column text-field-id="name" label="Наименование"/>
+                    <column text-field-id="value" label="Показатель"/>
+                </columns>
+            </table>
+        </left>
 
-
-                    <params>
-
-                        <!--                    <query-param name="distr" value="{callsPath.distr}" model="resolve"/>-->
-                        <query-param name="distr" value="{distr}" model="resolve" datasource="main"/>
-
-                    </params>
-                </open-drawer>
-            </button>
-        </toolbar>
-
-
-
-
-<!--        <line label="Заболевшие ОРВИ по месяцам" collapsible="false">-->
-<!--            <form>-->
-<!--                <fields>-->
-<!--                    <text id="field2">-->
-<!--                        Статистика за ${today()} год-->
-<!--                    </text>-->
-<!--                </fields>-->
-<!--            </form>-->
-<!--        </line>-->
-<!--        <chart width="1230" height="200">-->
-<!--            <datasource query-id="attachment-dynamic">-->
-<!--                <filters>-->
-<!--                    <like field-id="distr_id" param="distr"/>-->
-<!--                </filters>-->
-<!--            </datasource>-->
-<!--            <areas x-field-id="name" grid-stroke-dasharray="3 3">-->
-<!--                <area field-id="expenses" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
-<!--                <area field-id="income" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
-<!--            </areas>-->
-<!--        </chart>-->
-    </top>
-
-    <left width="50%">
-
-        <line label="Статистика по населению" collapsible="false">
-            <form>
-                <fields>
-                    <input-text id="d" param="distr" default-value="{distrId}"/>
-                    <text id="field2">
-                        По состоянию на ${today()} год:
-                    </text>
-                </fields>
-            </form>
-        </line>
-        <chart width="550" height="200" title="jkbkbk">
-            <datasource query-id="genderAndChild">
+        <right width="50%">
+            <line label="График диспансерного наблюдения прикрепленного населения" collapsible="false">
+                <form>
+                    <fields>
+                        <text id="field3">
+                            Пациентов по профилям:
+                        </text>
+                    </fields>
+                </form>
+            </line>
+            <chart width="600" height="200">
+                <datasource query-id="dispUch">
                 <filters>
                     <like field-id="distr_id" param="distr"/>
                 </filters>
             </datasource>
-            <bars x-field-id="gender" grid-stroke-dasharray="3 3">
-                <bar field-id="patCount" color="#8884d8"/>
-                <!--                <bar field-id="income" color="#82ca9d"/>-->
-            </bars>
-        </chart>
-        <table selection="none">
-            <datasource query-id="dispUch">
-                <filters>
-                    <like field-id="distr_id" param="distr"/>
-                </filters>
-            </datasource>
-            <columns>
-                <column text-field-id="id" label="№"/>
-                <column text-field-id="name" label="Наименование"/>
-                <column text-field-id="value" label="Показатель"/>
-            </columns>
-        </table>
-    </left>
+                <pie center-x="300" center-y="100" inner-radius="30" outer-radius="90"
+                     name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>
+            </chart>
+            <table selection="none">
+                <datasource query-id="dispUch">
+                    <filters>
+                        <like field-id="distr_id" param="distr"/>
+                    </filters>
+                </datasource>
+                <columns>
+                    <column text-field-id="id" label="№"/>
+                    <column text-field-id="name" label="Убыль населения"/>
+                    <column text-field-id="value" label="Прирост"/>
+                </columns>
+            </table>
+        </right>
 
-    <right width="50%">
-        <line label="График диспансерного наблюдения прикрепленного населения" collapsible="false">
-            <form>
-                <fields>
-                    <text id="field3">
-                        Пациентов по профилям:
-                    </text>
-                </fields>
-            </form>
-        </line>
-        <chart width="600" height="200">
-            <datasource query-id="dispUch">
-            <filters>
-                <like field-id="distr_id" param="distr"/>
-            </filters>
-        </datasource>
-            <pie center-x="300" center-y="100" inner-radius="30" outer-radius="90"
-                 name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>
-        </chart>
-        <table selection="none">
-            <datasource query-id="dispUch">
-                <filters>
-                    <like field-id="distr_id" param="distr"/>
-                </filters>
-            </datasource>
-            <columns>
-                <column text-field-id="id" label="№"/>
-                <column text-field-id="name" label="Убыль населения"/>
-                <column text-field-id="value" label="Прирост"/>
-            </columns>
-        </table>
-
-
-
-    </right>
 </top-left-right-page>

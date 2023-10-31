@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
       name="{ds.name}" id="callsPath">
+
     <datasources>
         <datasource id="ds" query-id="calls">
             <filters>
@@ -8,6 +9,7 @@
             </filters>
         </datasource>
     </datasources>
+
     <regions>
 
         <tabs lazy="false">

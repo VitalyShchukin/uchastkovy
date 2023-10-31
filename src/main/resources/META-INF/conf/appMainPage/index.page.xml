@@ -34,11 +34,6 @@
                         confirm-cancel-label="Нет"
                         color="success"
                         icon="fa fa-search">
-<!--                    <open-page page-id="callsFiltered" route="/callsFilteredByDistr">-->
-<!--                        <params>-->
-<!--                            <query-param name="distr" value="{inpSelectTree.distrId}" model="resolve" datasource="indexForm"/>-->
-<!--                        </params>-->
-<!--                    </open-page>-->
 
                     <open-page page-id="attachment" route="/attachedFilteredByDistr">
                         <params>

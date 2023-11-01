@@ -11,15 +11,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class PatientDto {
+public class DuchDto {
 
     @Id
     private Long id;
 
-    private String fio;
-    private String distr;
     private Integer distrId;
-    private String mo;
-    private String addr;
-    private String contact;
+    private String fio;
+    private String startDate;
+    private String nosolName;
 }

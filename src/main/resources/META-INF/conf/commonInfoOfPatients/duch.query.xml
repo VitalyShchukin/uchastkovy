@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0">
+
+    <list result-mapping="['_embedded.duchDistr']" count-mapping="['page.totalElements']">
+        <rest>/data-api/duchDistr/search/findAllDuchInDistr?distr={districtId}&amp;page={page}&amp;size={limit}
+        </rest>
+    </list>
+
+    <fields>
+        <field id="distr_id" domain="string" mapping="['distrId']"/>
+        <field id="fio" domain="string" mapping="['fio']"/>
+        <field id="start_date" domain="string" mapping="['startDate']"/>
+        <field id="nosol_name" domain="string" mapping="['nosolName']"/>
+    </fields>
+    <filters>
+        <like field-id="distr_id"
+              filter-id="districtId"
+        />
+    </filters>
+</query>

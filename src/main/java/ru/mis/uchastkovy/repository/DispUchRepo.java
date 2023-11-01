@@ -13,41 +13,49 @@ import ru.mis.uchastkovy.model.DistrictDto;
 @RepositoryRestResource(collectionResourceRel = "disp", path = "disp")
 public interface DispUchRepo extends CrudRepository<DispUchDto, Long>{
 
-    @Query(value = "select " +
-            " row_number() over () as id, " +
-            " case " +
-            "  when mnr.code ilike '%I%' then 'ССЗ' " +
-            "  when mnr.code ilike '%G%' then 'ОНКО' " +
-            "  when mnr.code ilike '%M%' then 'АКИНЕО' " +
-            "  else 'иные' " +
-            " end as diag_group " +
-            "  , count(*) as count_pats " +
-            " from public.pci_patient_reg ppr " +
-            " join public.pim_individual pi2 on pi2.id = ppr.patient_id " +
-            " join public.pci_dispensary pd on pd.patient_id = pi2.id " +
-            " join md_nosol_registr mnr on mnr.id = pd.nosol_registr_id " +
-            " where ppr.district_id = :distr " +
-            " and reg_out_dt is null " +
-            " group by 2 " +
+    @Query(value = "select \n" +
+            " row_number() over () as id, \n" +
+            " case \n" +
+            "  when mnr.code ilike '%I%' then 'ССЗ' \n" +
+            "  when mnr.code ilike '%С%' then 'Злокач. новообразования' \n" +
+            "  when mnr.code ilike '%F%' then 'Психические' \n" +
+            "  when mnr.code ilike '%А%' then 'Инфекционные' \n" +
+            "  when mnr.code ilike '%D%' then 'Доброкач. новообразования' \n" +
+            "  when mnr.code ilike '%P%' then 'АКИНЕО' \n" +
+            "  when mnr.code ilike '%L%' then 'Болезни кожи' \n" +
+            "  else 'иные' \n" +
+            " end as diag_group \n" +
+            "  , count(*) as count_pats \n" +
+            " from public.pci_patient_reg ppr \n" +
+            " join public.pim_individual pi2 on pi2.id = ppr.patient_id \n" +
+            " join public.pci_dispensary pd on pd.patient_id = pi2.id \n" +
+            " join md_nosol_registr mnr on mnr.id = pd.nosol_registr_id \n" +
+            " where ppr.district_id = :distr \n" +
+            " and reg_out_dt is null \n" +
+            " group by 2 \n" +
             " order by 1 ",
             countQuery = "select count(*) from( " +
-                    " select " +
-                    " row_number() over () as id, " +
-                    " case " +
-                    "  when mnr.code ilike '%I%' then 'ССЗ' " +
-                    "  when mnr.code ilike '%G%' then 'ОНКО' " +
-                    "  when mnr.code ilike '%M%' then 'АКИНЕО' " +
-                    "  else 'иные' " +
-                    " end as diag_group " +
-                    "  , count(*) as count_pats " +
-                    " from public.pci_patient_reg ppr " +
-                    " join public.pim_individual pi2 on pi2.id = ppr.patient_id " +
-                    " join public.pci_dispensary pd on pd.patient_id = pi2.id " +
-                    " join md_nosol_registr mnr on mnr.id = pd.nosol_registr_id " +
-                    " where ppr.district_id = :distr " +
-                    " and reg_out_dt is null " +
-                    " group by 2 " +
-                    " order by 1) as rs",
+                    " select \n" +
+                    " row_number() over () as id, \n" +
+                    " case \n" +
+                    "  when mnr.code ilike '%I%' then 'ССЗ' \n" +
+                    "  when mnr.code ilike '%С%' then 'Злокач. новообразования' \n" +
+                    "  when mnr.code ilike '%F%' then 'Психические' \n" +
+                    "  when mnr.code ilike '%А%' then 'Инфекционные' \n" +
+                    "  when mnr.code ilike '%D%' then 'Доброкач. новообразования' \n" +
+                    "  when mnr.code ilike '%P%' then 'АКИНЕО' \n" +
+                    "  when mnr.code ilike '%L%' then 'Болезни кожи' \n" +
+                    "  else 'иные' \n" +
+                    " end as diag_group \n" +
+                    "  , count(*) as count_pats \n" +
+                    " from public.pci_patient_reg ppr \n" +
+                    " join public.pim_individual pi2 on pi2.id = ppr.patient_id \n" +
+                    " join public.pci_dispensary pd on pd.patient_id = pi2.id \n" +
+                    " join md_nosol_registr mnr on mnr.id = pd.nosol_registr_id \n" +
+                    " where ppr.district_id = :distr \n" +
+                    " and reg_out_dt is null \n" +
+                    " group by 2 \n" +
+                    " order by 1 ) as rs",
             nativeQuery = true)
     @RestResource
     Page<DispUchDto> findAllDispUchPatients(@Param("distr")Integer distr, Pageable pageable);

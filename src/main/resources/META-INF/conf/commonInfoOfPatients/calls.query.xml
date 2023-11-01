@@ -12,6 +12,8 @@
         <field id="distr" domain="string" mapping="['distr']"/>
         <field id="distr_id" domain="string" mapping="['distr_id']"/>
         <field id="mo" domain="string" mapping="['mo']"/>
+        <field id="addr" domain="string" mapping="['addr']"/>
+        <field id="contact" domain="string" mapping="['contact']"/>
     </fields>
     <filters>
         <like field-id="distr_id"

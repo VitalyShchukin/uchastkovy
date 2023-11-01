@@ -26,7 +26,7 @@
 
                         <validations>
                             <condition id="checkOrgNotDistr"
-                                       message="Выберите конкретный участок, а не организацию"
+                                       message="Выберите врачебный участок, а не организацию"
                                        field-id="inpSelectTree">${inpSelectTree.distrId} != -1</condition>
                         </validations>
 <!--                    message="Выберите конкретный участок, а не организацию {inpSelectTree.distrId}"-->

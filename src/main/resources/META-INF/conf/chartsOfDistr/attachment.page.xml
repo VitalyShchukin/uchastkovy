@@ -23,35 +23,24 @@
 
         <top>
 
-            <line label="Заболевшие ОРВИ по месяцам" collapsible="false">
+            <line label="Статистика по типам случаев на участке" collapsible="false">
                 <form>
                     <fields>
                         <text id="field2">
-                            Статистика за ${today()} год
+                            За полный предыдущий год
                         </text>
                     </fields>
                 </form>
             </line>
-<!--            <chart width="1230" height="200">-->
-<!--                <datasource query-id="attachment-dynamic">-->
-<!--                    <filters>-->
-<!--                        <like field-id="distr_id" param="distr"/>-->
-<!--                    </filters>-->
-<!--                </datasource>-->
-<!--                <areas x-field-id="mnth" grid-stroke-dasharray="3 3">-->
-<!--                    <area field-id="gosp" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
-<!--                    <area field-id="neotl" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
-<!--                </areas>-->
-<!--            </chart>-->
             <chart width="1000" height="250">
                                 <datasource query-id="attachment-dynamic">
                                     <filters>
                                         <like field-id="distr_id" param="distr"/>
                                     </filters>
                                 </datasource>
-                <areas x-field-id="mnth" grid-stroke-dasharray="1 1">
-                    <area field-id="gosp" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>
-                    <area field-id="neotl" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>
+                <areas x-field-id="mnth" grid-stroke-dasharray="3 3">
+                    <area field-id="gosp" label="Случаи госпитализации" line-type="linear" color="#8884d8" stroke-color="#5accc1"/>
+                    <area field-id="neotl" label="Случаи неотложной помощи" line-type="linear" color="#82ca9d" stroke-color="#a4cc1f"/>
                 </areas>
             </chart>
         </top>
@@ -61,9 +50,8 @@
             <line label="Статистика по населению" collapsible="false">
                 <form>
                     <fields>
-                        <input-text id="d" param="distr" default-value="{distrId}"/>
                         <text id="field2">
-                            По состоянию на ${today()} год:
+                            Пол прикрепленных
                         </text>
                     </fields>
                 </form>
@@ -75,22 +63,22 @@
                     </filters>
                 </datasource>
                 <bars x-field-id="gender" grid-stroke-dasharray="3 3">
-                    <bar field-id="patCount" color="#8884d8"/>
+                    <bar field-id="patCount" label="Количество пациентов" color="#8884d8"/>
                     <!--                <bar field-id="income" color="#82ca9d"/>-->
                 </bars>
             </chart>
-            <table selection="none">
-                <datasource query-id="dispUch">
-                    <filters>
-                        <like field-id="distr_id" param="distr"/>
-                    </filters>
-                </datasource>
-                <columns>
-                    <column text-field-id="id" label="№"/>
-                    <column text-field-id="name" label="Наименование"/>
-                    <column text-field-id="value" label="Показатель"/>
-                </columns>
-            </table>
+<!--            <table selection="none">-->
+<!--                <datasource query-id="dispUch">-->
+<!--                    <filters>-->
+<!--                        <like field-id="distr_id" param="distr"/>-->
+<!--                    </filters>-->
+<!--                </datasource>-->
+<!--                <columns>-->
+<!--                    <column text-field-id="id" label="№"/>-->
+<!--                    <column text-field-id="name" label="Наименование"/>-->
+<!--                    <column text-field-id="value" label="Показатель"/>-->
+<!--                </columns>-->
+<!--            </table>-->
         </left>
 
         <right width="50%">
@@ -98,7 +86,7 @@
                 <form>
                     <fields>
                         <text id="field3">
-                            Пациентов по профилям:
+                            Пациентов (чел.) по профилям
                         </text>
                     </fields>
                 </form>
@@ -112,18 +100,18 @@
                 <pie center-x="300" center-y="100" inner-radius="30" outer-radius="90"
                      name-field-id="name" value-field-id="value" color="#FA8072" has-label="true"/>
             </chart>
-            <table selection="none">
-                <datasource query-id="dispUch">
-                    <filters>
-                        <like field-id="distr_id" param="distr"/>
-                    </filters>
-                </datasource>
-                <columns>
-                    <column text-field-id="id" label="№"/>
-                    <column text-field-id="name" label="Убыль населения"/>
-                    <column text-field-id="value" label="Прирост"/>
-                </columns>
-            </table>
+<!--            <table selection="none">-->
+<!--                <datasource query-id="dispUch">-->
+<!--                    <filters>-->
+<!--                        <like field-id="distr_id" param="distr"/>-->
+<!--                    </filters>-->
+<!--                </datasource>-->
+<!--                <columns>-->
+<!--                    <column text-field-id="id" label="№"/>-->
+<!--                    <column text-field-id="name" label="Убыль населения"/>-->
+<!--                    <column text-field-id="value" label="Прирост"/>-->
+<!--                </columns>-->
+<!--            </table>-->
         </right>
 
 </top-left-right-page>

@@ -38,11 +38,22 @@
 <!--                        <like field-id="distr_id" param="distr"/>-->
 <!--                    </filters>-->
 <!--                </datasource>-->
-<!--                <areas x-field-id="name" grid-stroke-dasharray="3 3">-->
-<!--                    <area field-id="expenses" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
-<!--                    <area field-id="income" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
+<!--                <areas x-field-id="mnth" grid-stroke-dasharray="3 3">-->
+<!--                    <area field-id="gosp" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>-->
+<!--                    <area field-id="neotl" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>-->
 <!--                </areas>-->
 <!--            </chart>-->
+            <chart width="1000" height="250">
+                                <datasource query-id="attachment-dynamic">
+                                    <filters>
+                                        <like field-id="distr_id" param="distr"/>
+                                    </filters>
+                                </datasource>
+                <areas x-field-id="mnth" grid-stroke-dasharray="1 1">
+                    <area field-id="gosp" line-type="monotone" color="#8884d8" stroke-color="#8884d8"/>
+                    <area field-id="neotl" line-type="monotone" color="#82ca9d" stroke-color="#82ca9d"/>
+                </areas>
+            </chart>
         </top>
 
         <left width="50%">

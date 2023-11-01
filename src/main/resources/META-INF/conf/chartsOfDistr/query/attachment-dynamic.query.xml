@@ -1,19 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0">
-    <list>
-        <rest>/j</rest>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-5.0">
+    <list result-mapping="['_embedded.forChartMonth']" count-mapping="['page.totalElements']">
+        <rest>/data-api/forChartMonth/search/getDataForChartOfMonthFromDistr?distr={districtId}&amp;page=0&amp;size=100</rest>
     </list>
 
     <fields>
-        <field id="name">
-            <select/>
-        </field>
-        <field id="expenses">
-            <select/>
-        </field>
-        <field id="income">
-            <select/>
-        </field>
-        <field id="distr_id" domain="string"/>
+        <field id="mnth" domain="integer" mapping="['mnth']"/>
+        <field id="gosp" domain="integer" mapping="['gosp']"/>
+        <field id="neotl" domain="integer" mapping="['neotl']"/>
+        <field id="distr_id" domain="integer" mapping="['distrId']"/>
     </fields>
+    <filters>
+        <like field-id="distr_id"
+              filter-id="districtId"
+        />
+    </filters>
 </query>

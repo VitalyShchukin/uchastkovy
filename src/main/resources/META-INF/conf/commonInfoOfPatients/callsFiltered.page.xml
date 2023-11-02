@@ -35,22 +35,6 @@
                 </table>
             </tab>
 
-            <tab name="Контактный телефон">
-                <table id="table2" datasource="ds">
-                    <pagination
-                            show-last="true"
-                            show-count="always"/>
-                    <columns>
-                        <column text-field-id="fio" label="Фамилия И.О."/>
-                        <column text-field-id="contact" label="Контактный телефон"/>
-                        <column text-field-id="mo" label="Мед организация"/>
-                    </columns>
-                    <toolbar place="topRight">
-                        <group generate="columns,resize"/>
-                    </toolbar>
-                </table>
-            </tab>
-
             <tab name="Д-учет">
                 <table id="table4" datasource="d">
                     <pagination
@@ -60,6 +44,22 @@
                         <column text-field-id="fio" label="Фамилия И.О."/>
                         <column text-field-id="start_date" label="Дата постановки на Д-учет"/>
                         <column text-field-id="nosol_name" label="Наименование нозологического регистра"/>
+                    </columns>
+                    <toolbar place="topRight">
+                        <group generate="columns,resize"/>
+                    </toolbar>
+                </table>
+            </tab>
+
+            <tab name="Контактный телефон">
+                <table id="table2" datasource="ds">
+                    <pagination
+                            show-last="true"
+                            show-count="always"/>
+                    <columns>
+                        <column text-field-id="fio" label="Фамилия И.О."/>
+                        <column text-field-id="contact" label="Контактный телефон"/>
+                        <column text-field-id="mo" label="Мед организация"/>
                     </columns>
                     <toolbar place="topRight">
                         <group generate="columns,resize"/>

@@ -21,7 +21,7 @@
             </extra-menu>
         </sidebar>
     </sidebars>
-    <footer left-text="Prod. by svvgan"/>
+    <footer left-text="Prod. by svvgan ver.0.0.1.alfa"/>
 <!--    <datasources>-->
 <!--        <datasource id="appDs" query-id="treeOrgDistr"/>-->
 <!--    </datasources>-->

@@ -3,32 +3,25 @@ package ru.mis.uchastkovy.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import ru.mis.uchastkovy.security.model.User;
 import ru.mis.uchastkovy.security.repo.UserRepository;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-
-//
-//    //????
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepo) {
@@ -39,57 +32,68 @@ public class SecurityConfig {
         };
     }
 
-//    @Bean
-//    public UserDetailsManager users(DataSource dataSource) {
-//        UserDetails user = new User();
-//
-//
-//        user.setUsername("user")
-//                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-//                .roles("USER")
-//                .build();
-//        UserDetails admin = new User().builder()
-//                .username("admin")
-//                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-//                .roles("USER", "ADMIN")
-//                .build();
-//        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-//        users.createUser(user);
-//        users.createUser(admin);
-//        return users;
-//    }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-//        List<UserDetails> usersList = new ArrayList<>();
-//        User a = new User();
-//        a.setLogin("a");
-//        a.setPassword(encoder.encode("a"));
-//        usersList.add(a);
-//
-////        usersList.add(new User(
-////                "buzz", encoder.encode("password"),
-////                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-////        usersList.add(new User(
-////                "woody", encoder.encode("password"),
-////                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-//        return (UserDetailsService)new InMemoryUserDetailsManager(usersList);
-//    }
-//
     //даём доступ и разграничиваем страницы
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-//                .authorizeRequests()
-////                .antMatchers("/design", "/orders").hasRole("USER")
-//                .antMatchers("/").hasRole("USER")
-////                .antMatchers("/", "/**").permitAll()
-//                .antMatchers("/", "/**").permitAll()
-//                .and()
                 .formLogin()
                 .loginPage("/login")
                 .and()
+                .authorizeRequests()
+//                .antMatchers("/#/").hasRole("USER")
+//                .antMatchers("/").hasRole("USER")
+                .antMatchers("/", "/**").permitAll()
+                .and()
+
                 .build();
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence charSequence) {
+                return getMd5(charSequence.toString());
+            }
+
+            @Override
+            public boolean matches(CharSequence charSequence, String s) {
+                return getMd5(charSequence.toString()).equals(s);
+            }
+        };
+    }
+
+    public static String getMd5(String input) {
+        try {
+            // Static getInstance method is called with hashing SHA
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method called
+            // to calculate message digest of an input
+            // and return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            System.out.println("Exception thrown"
+                    + " for incorrect algorithm: " + e);
+            return null;
+        }
     }
 
 }

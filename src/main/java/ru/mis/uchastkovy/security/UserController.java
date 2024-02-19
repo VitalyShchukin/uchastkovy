@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class UserController {
 
-    @GetMapping("/login")
+    @GetMapping
     public String loginForm() {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping
     public String loginForm(@RequestParam String username, @RequestParam String password) {
         return "login";
     }
+
 }

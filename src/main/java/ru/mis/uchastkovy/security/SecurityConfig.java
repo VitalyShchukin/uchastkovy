@@ -27,23 +27,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
 
-
-//                .authorizeRequests()
-//                .antMatchers("/").hasRole("USER")
-//                .and()
-
-//                .authorizeRequests()
-////                .antMatchers("/#/").hasRole("USER")
-////                .antMatchers("/").hasRole("USER")
-//                .antMatchers("/", "/**").permitAll()
-//                .and()
+                .authorizeRequests()
+                .antMatchers("/","/#/","/#/**").authenticated()
+                .and()
 
                 .formLogin()
                 .loginPage("/login")
-                .and()
-
-                .authorizeRequests()
-                .antMatchers("/#/**").authenticated()
                 .and()
 
                 .build();

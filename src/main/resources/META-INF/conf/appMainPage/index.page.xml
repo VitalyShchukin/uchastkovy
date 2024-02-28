@@ -59,5 +59,9 @@
 
         </form>
 
+        <html>
+            <content url="/templates/customCharts/first.jsp"/>
+        </html>
+
     </regions>
 </page>

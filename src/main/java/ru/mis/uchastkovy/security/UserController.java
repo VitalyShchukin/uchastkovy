@@ -12,12 +12,12 @@ public class UserController {
 
     @GetMapping
     public String loginForm() {
-        return "login";
+        return "auth-page";
     }
 
     @PostMapping
     public String loginForm(@RequestParam String username, @RequestParam String password) {
-        return "login";
+        return "auth-page";
     }
 
 }

@@ -59,9 +59,29 @@
 
         </form>
 
-        <html>
-            <content url="/templates/customCharts/first.jsp"/>
-        </html>
+<!--        <html>-->
+<!--            <content url="/templates/customCharts/first.jsp"/>-->
+<!--        </html>-->
+
+
+
+            <line collapsible="false">
+                <form>
+                    <fields>
+                        <text id="field2">
+                            Смертность по МО за полный предыдущий год
+                        </text>
+                    </fields>
+                </form>
+            </line>
+            <chart width="1500" height="320" >
+                <datasource query-id="smertn">
+                </datasource>
+                <bars x-field-id="shortName">
+                    <bar field-id="count" label="Количество: "  color="#8884d8" has-label="false"/>
+                </bars>
+            </chart>
+
 
     </regions>
 </page>

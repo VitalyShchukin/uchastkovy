@@ -1,19 +1,14 @@
 package ru.mis.uchastkovy.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import ru.mis.uchastkovy.security.model.User;
 import ru.mis.uchastkovy.security.repo.UserRepository;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -28,11 +23,16 @@ public class SecurityConfig {
         return http
 
                 .authorizeRequests()
-                .antMatchers("/","/#/","/#/**").authenticated()
+                .antMatchers("/**").authenticated()
                 .and()
 
                 .formLogin()
                 .loginPage("/login")
+                .permitAll()
+                .and()
+
+                .logout()
+                .logoutSuccessUrl("/login")
                 .and()
 
                 .build();

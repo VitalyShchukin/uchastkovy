@@ -49,12 +49,6 @@
         </dependency>
 
         <dependency>
-            <groupId>net.n2oapp.framework</groupId>
-            <artifactId>n2o-spring-boot-starter</artifactId>
-            <version>${n2o.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -66,14 +60,15 @@
         </dependency>
 
         <dependency>
-            <groupId>net.n2oapp.framework</groupId>
-            <artifactId>n2o-web</artifactId>
-            <version>${n2o.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+<!--            <version>1.18.30</version>-->
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
